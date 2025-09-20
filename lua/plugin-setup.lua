@@ -19,25 +19,29 @@ require("lazy").setup({
 	{ "tpope/vim-commentary" }, -- Comment action
 	{ "powerman/vim-plugin-ruscmd" }, -- Vim works on russian layout :^)
 	{ "tpope/vim-fugitive" }, -- Git integration
-	{ "nvzone/volt" },
 	{ "MunifTanjim/nui.nvim" },
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			require("leap").set_default_mappings()
+		end,
+	},
 	{ "Bekaboo/dropbar.nvim", opts = {} },
 	{
-		"kdheepak/lazygit.nvim",
-		lazy = true,
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			dashboard = { enabled = true },
+			indent = { enabled = true },
 		},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		keys = {
-			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-		},
+	},
+	{
+		"zenbones-theme/zenbones.nvim",
+		dependencies = "rktjmp/lush.nvim",
+		lazy = false,
+		priority = 1000,
 	},
 	{
 		"stevearc/oil.nvim",
@@ -51,33 +55,6 @@ require("lazy").setup({
 				max_width = 0.5,
 				max_height = 0.5,
 			},
-		},
-	},
-	{
-		"mistricky/codesnap.nvim",
-		build = "make",
-		keys = {
-			{ "<leader>cc", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
-			{ "<leader>cs", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
-		},
-		opts = {
-			save_path = "~/Pictures",
-			has_breadcrumbs = true,
-			bg_color = "#535c68",
-			code_font_family = "Lilex Nerd Font",
-			watermark = "",
-		},
-	},
-	{
-		"echaya/neowiki.nvim",
-		opts = {
-			wiki_dirs = {
-				-- neowiki.nvim supports both absolute and relative paths
-				{ name = "NeoWiki", path = "~/neowiki" },
-			},
-		},
-		keys = {
-			{ "<leader>ww", "<cmd>lua require('neowiki').open_wiki()<cr>", desc = "Open Wiki" },
 		},
 	},
 	{
@@ -115,22 +92,18 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"nvzone/floaterm",
-	},
-	{
-		"nvimdev/lspsaga.nvim",
-		config = function()
-			require("lspsaga").setup({
-				lightbulb = {
-					enable = false,
-				},
-			})
-		end,
-	},
-	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		opts = {},
+		opts = {
+			views = {
+				cmdline_popup = {
+					border = {
+						style = "single",
+						padding = { 2, 2 },
+					},
+				},
+			},
+		},
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
@@ -138,11 +111,7 @@ require("lazy").setup({
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		opts = {},
 		keys = {
 			{
 				"<leader>?",
@@ -156,7 +125,7 @@ require("lazy").setup({
 
 	{
 		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		opts = {},
 		cmd = "Trouble",
 		keys = {
 			{
@@ -169,11 +138,6 @@ require("lazy").setup({
 				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 				desc = "Buffer Diagnostics (Trouble)",
 			},
-			-- {
-			-- 	"<leader>cs",
-			-- 	"<cmd>Trouble symbols toggle focus=false<cr>",
-			-- 	desc = "Symbols (Trouble)",
-			-- },
 			{
 				"<leader>cl",
 				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
@@ -189,55 +153,21 @@ require("lazy").setup({
 				"<cmd>Trouble qflist toggle<cr>",
 				desc = "Quickfix List (Trouble)",
 			},
-		},
-	},
-
-	{
-		"everviolet/nvim",
-		name = "evergarden",
-		priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
-		opts = {
-			theme = {
-				variant = "fall",
-			},
-			editor = {
-				transparent_background = false,
-				override_terminal = true,
-				-- sign = {
-				-- 	color = "surface0",
-				-- },
-			},
-			style = {
-				tabline = { "reverse" },
-				search = { "italic" },
-				incsearch = { "reverse" },
-				types = { "italic" },
-				keyword = { "italic" },
-				comment = { "italic" },
-			},
-			integrations = {
-				-- blink_cmp = true,
-				gitsigns = true,
-				indent_blankline = true,
-				-- nvimtree = true,
-				-- rainbow_delimiters = true,
-				-- symbols_outline = true,
-				telescope = true,
-				which_key = true,
+			{
+				"<leader>xt",
+				"<cmd>Trouble todo toggle<cr>",
+				desc = "Todo List (Trouble)",
 			},
 		},
 	},
 
-	-- Plugins with custom setup
 	require("plugins.themes"),
 	require("plugins.lsp"),
-	-- require("plugins.blink"),
+	require("plugins.lualine"),
 	require("plugins.conform"),
 	require("plugins.telescope"),
 	require("plugins.treesitter"),
-	require("plugins.alpha"),
 	require("plugins.project"),
-	require("plugins.blankline"),
 	require("plugins.cursorline"),
 	require("plugins.render-markdown"),
 })

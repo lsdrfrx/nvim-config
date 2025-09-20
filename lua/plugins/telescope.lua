@@ -1,14 +1,14 @@
 return {
-	{ "nvim-telescope/telescope-file-browser.nvim" },
+	{ "fannheyward/telescope-coc.nvim" },
 	{
 		"nvim-telescope/telescope.nvim",
 		config = function()
 			require("telescope").setup({
 				extensions = {
-					file_browser = {
-						initial_mode = "normal",
-						hijack_netrw = true,
-						hidden = true,
+					coc = {
+						prefer_locations = true,
+						push_cursor_on_edit = true,
+						timeout = 3000,
 					},
 				},
 				pickers = {

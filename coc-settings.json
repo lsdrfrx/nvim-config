@@ -41,7 +41,6 @@
       "filetypes": ["haskell", "lhaskell"],
       "trace.server": "verbose",
       "rootPatterns": ["*.cabal", "cabal.project"],
-    }
+    },
   },
-  "snippets.ultisnips.pythonPrompt": false
 }

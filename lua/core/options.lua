@@ -56,23 +56,6 @@ vim.cmd("syntax on")
 vim.cmd("set textwidth=500")
 vim.cmd("set fo+=t")
 
-vim.cmd("colorscheme evergarden")
-
-vim.cmd("highlight Folded guibg=NONE")
-vim.cmd("highlight FoldColumn ctermfg=NONE guifg=NONE")
-
-vim.cmd("highlight DiagnosticVirtualTextWarn guibg=NONE ctermbg=NONE")
-vim.cmd("highlight DiagnosticVirtualTextError guibg=NONE ctermbg=NONE")
-vim.cmd("highlight DiagnosticVirtualTextInfo guibg=NONE ctermbg=NONE")
-vim.cmd("highlight DiagnosticVirtualTextHint guibg=NONE ctermbg=NONE")
-vim.cmd("highlight DiagnosticVirtualTextOk guibg=NONE ctermbg=NONE")
-
-vim.cmd("hi WinSeparator guifg=bg")
-vim.cmd("hi NormalNC guibg=bg")
-vim.cmd("hi NeoTreeNormal guibg=bg")
-vim.cmd("hi NeoTreeNormalNC guibg=bg")
-vim.cmd("hi TroubleNormal guibg=bg")
-vim.cmd("hi TroubleNormalNC guibg=bg")
 -- vim.cmd("hi WinBar guibg=bg")
 -- vim.cmd("hi WinBarNC guibg=bg")
 -- vim.cmd("hi TerminalNormal guibg=bg")
