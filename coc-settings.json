@@ -6,6 +6,7 @@
   "suggest.floatConfig": {
     "border": false,
   },
+
   "suggest.completionItemKindLabels": {
     "text": "󰦨",
     "method": "",
@@ -34,6 +35,7 @@
     "typeParameter": "",
     "default": ""
   },
+
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
@@ -42,5 +44,18 @@
       "trace.server": "verbose",
       "rootPatterns": ["*.cabal", "cabal.project"],
     },
+
+    "gleam": {
+      "command": "gleam",
+      "args": ["lsp"],
+      "rootPatterns": ["gleam.toml"],
+      "filetypes": ["gleam"],
+      "trace.server": "verbose",
+    }
+  },
+  "php-cs-fixer.activateTool": "pint",
+
+  "[php]": {
+    "coc.preferences.formatOnSave": true
   },
 }
